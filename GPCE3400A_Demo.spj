@@ -252,7 +252,7 @@ EXPORT=3
 #PROP Default_Filter=
 USEPARAM=FALSE
 PARAM=
-EXPORT=3
+EXPORT=0
 # Begin Source File
 SOURCE=..\Include\A1800.inc
 USEPARAM=FALSE
@@ -635,7 +635,7 @@ EXPORT=3
 #PROP Default_Filter=
 USEPARAM=FALSE
 PARAM=
-EXPORT=3
+EXPORT=0
 # Begin Source File
 SOURCE=..\Include\A1800.inc
 USEPARAM=FALSE

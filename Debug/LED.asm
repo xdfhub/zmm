@@ -58,7 +58,7 @@ _Init_LED: .proc
 LM1:
 	     .stabn 68,0,47,LM1-_Init_LED
 BB1_PU0:	// 0x0
-// BB:1 cycle count: 51
+// BB:1 cycle count: 48
 	     push BP to [SP]          	// [0:47]  
 	     BP = SP + 1              	// [2:47]  
 //  48  	*P_LED_ATTRIB |= LED_ALL_BIT;
@@ -69,38 +69,38 @@ LM2:
 	     R4 = 0                   	// [6:48]  
 	     DS = R4                  	// [7:48]  
 	     R4 = DS:[R3]             	// [8:48]  
-	     R2 = R4 | 240            	// [10:48]  
-	     R3 = 12291               	// [12:48]  
-	     R4 = 0                   	// [14:48]  
-	     DS = R4                  	// [15:48]  
-	     DS:[R3] = R2             	// [16:48]  
+	     R4 = R4 | 15             	// [10:48]  
+	     R2 = 12291               	// [11:48]  
+	     R3 = 0                   	// [13:48]  
+	     DS = R3                  	// [14:48]  
+	     DS:[R2] = R4             	// [15:48]  
 //  49  	*P_LED_DIR |= LED_ALL_BIT;
 
 LM3:
 	     .stabn 68,0,49,LM3-_Init_LED
-	     R3 = 12290               	// [18:49]  
-	     R4 = 0                   	// [20:49]  
-	     DS = R4                  	// [21:49]  
-	     R4 = DS:[R3]             	// [22:49]  
-	     R2 = R4 | 240            	// [24:49]  
-	     R3 = 12290               	// [26:49]  
-	     R4 = 0                   	// [28:49]  
-	     DS = R4                  	// [29:49]  
-	     DS:[R3] = R2             	// [30:49]  
+	     R3 = 12290               	// [17:49]  
+	     R4 = 0                   	// [19:49]  
+	     DS = R4                  	// [20:49]  
+	     R4 = DS:[R3]             	// [21:49]  
+	     R4 = R4 | 15             	// [23:49]  
+	     R2 = 12290               	// [24:49]  
+	     R3 = 0                   	// [26:49]  
+	     DS = R3                  	// [27:49]  
+	     DS:[R2] = R4             	// [28:49]  
 //  50  	*P_LED_BUFFER |= LED_ALL_BIT;		
 
 LM4:
 	     .stabn 68,0,50,LM4-_Init_LED
-	     R3 = 12289               	// [32:50]  
-	     R4 = 0                   	// [34:50]  
-	     DS = R4                  	// [35:50]  
-	     R4 = DS:[R3]             	// [36:50]  
-	     R2 = R4 | 240            	// [38:50]  
-	     R3 = 12289               	// [40:50]  
-	     R4 = 0                   	// [42:50]  
-	     DS = R4                  	// [43:50]  
-	     DS:[R3] = R2             	// [44:50]  
-	     pop BP, PC from [SP]     	// [46:50]  
+	     R3 = 12289               	// [30:50]  
+	     R4 = 0                   	// [32:50]  
+	     DS = R4                  	// [33:50]  
+	     R4 = DS:[R3]             	// [34:50]  
+	     R4 = R4 | 15             	// [36:50]  
+	     R2 = 12289               	// [37:50]  
+	     R3 = 0                   	// [39:50]  
+	     DS = R3                  	// [40:50]  
+	     DS:[R2] = R4             	// [41:50]  
+	     pop BP, PC from [SP]     	// [43:50]  
 	.endp	
 LME1:
 	     .stabf LME1-_Init_LED
@@ -127,7 +127,7 @@ _LED_Control: .proc
 
 LM5:
 	     .stabn 68,0,54,LM5-_LED_Control
-BB1_PU1:	// 0x28
+BB1_PU1:	// 0x25
 // BB:1 cycle count: 11
 	     push BP to [SP]          	// [0:54]  
 	     BP = SP + 1              	// [2:54]  
@@ -138,25 +138,25 @@ LM6:
 	     R4 = [BP + 3]            	// [4:55]  taskNum
 	     cmp R4, 0                	// [6:55]  
 	     je Lt_1_1                	// [7:55]  
-BB2_PU1:	// 0x2e
+BB2_PU1:	// 0x2b
 // BB:2 cycle count: 7
 	     R4 = [BP + 3]            	// [0:55]  taskNum
 	     cmp R4, 1                	// [2:55]  
 	     je Lt_1_3                	// [3:55]  
-BB3_PU1:	// 0x31
+BB3_PU1:	// 0x2e
 // BB:3 cycle count: 7
 	     R4 = [BP + 3]            	// [0:55]  taskNum
 	     cmp R4, 2                	// [2:55]  
 	     je Lt_1_4                	// [3:55]  
-BB4_PU1:	// 0x34
+BB4_PU1:	// 0x31
 // BB:4 cycle count: 7
 	     R4 = [BP + 3]            	// [0:55]  taskNum
 	     cmp R4, 3                	// [2:55]  
 	     je Lt_1_5                	// [3:55]  
-BB5_PU1:	// 0x37
+BB5_PU1:	// 0x34
 // BB:5 cycle count: 4
 	     jmp Lt_1_2               	// [0:55]  
-Lt_1_1:	// 0x38
+Lt_1_1:	// 0x35
 // BB:6 cycle count: 17
 //  56  	{
 //  57  		case 0:
@@ -168,7 +168,7 @@ LM7:
 	     R4 = 0                   	// [2:58]  
 	     DS = R4                  	// [3:58]  
 	     R4 = DS:[R3]             	// [4:58]  
-	     R4 = R4 ^ 16             	// [6:58]  
+	     R4 = R4 ^ 1              	// [6:58]  
 	     R2 = 12289               	// [7:58]  
 	     R3 = 0                   	// [9:58]  
 	     DS = R3                  	// [10:58]  
@@ -178,7 +178,7 @@ LM7:
 LM8:
 	     .stabn 68,0,59,LM8-_LED_Control
 	     jmp Lt_1_2               	// [13:59]  
-Lt_1_3:	// 0x44
+Lt_1_3:	// 0x41
 // BB:7 cycle count: 17
 //  60  		
 //  61  		case 1:
@@ -190,7 +190,7 @@ LM9:
 	     R4 = 0                   	// [2:62]  
 	     DS = R4                  	// [3:62]  
 	     R4 = DS:[R3]             	// [4:62]  
-	     R4 = R4 ^ 32             	// [6:62]  
+	     R4 = R4 ^ 2              	// [6:62]  
 	     R2 = 12289               	// [7:62]  
 	     R3 = 0                   	// [9:62]  
 	     DS = R3                  	// [10:62]  
@@ -200,8 +200,8 @@ LM9:
 LM10:
 	     .stabn 68,0,63,LM10-_LED_Control
 	     jmp Lt_1_2               	// [13:63]  
-Lt_1_4:	// 0x50
-// BB:8 cycle count: 18
+Lt_1_4:	// 0x4d
+// BB:8 cycle count: 17
 //  64  
 //  65  		case 2:
 //  66  			*P_LED_BUFFER ^= LED2_BIT;
@@ -212,18 +212,18 @@ LM11:
 	     R4 = 0                   	// [2:66]  
 	     DS = R4                  	// [3:66]  
 	     R4 = DS:[R3]             	// [4:66]  
-	     R2 = R4 ^ 64             	// [6:66]  
-	     R3 = 12289               	// [8:66]  
-	     R4 = 0                   	// [10:66]  
-	     DS = R4                  	// [11:66]  
-	     DS:[R3] = R2             	// [12:66]  
+	     R4 = R4 ^ 4              	// [6:66]  
+	     R2 = 12289               	// [7:66]  
+	     R3 = 0                   	// [9:66]  
+	     DS = R3                  	// [10:66]  
+	     DS:[R2] = R4             	// [11:66]  
 //  67  		break;
 
 LM12:
 	     .stabn 68,0,67,LM12-_LED_Control
-	     jmp Lt_1_2               	// [14:67]  
-Lt_1_5:	// 0x5d
-// BB:9 cycle count: 18
+	     jmp Lt_1_2               	// [13:67]  
+Lt_1_5:	// 0x59
+// BB:9 cycle count: 17
 //  68  		
 //  69  		case 3:
 //  70  			*P_LED_BUFFER ^= LED3_BIT;
@@ -234,18 +234,18 @@ LM13:
 	     R4 = 0                   	// [2:70]  
 	     DS = R4                  	// [3:70]  
 	     R4 = DS:[R3]             	// [4:70]  
-	     R2 = R4 ^ 128            	// [6:70]  
-	     R3 = 12289               	// [8:70]  
-	     R4 = 0                   	// [10:70]  
-	     DS = R4                  	// [11:70]  
-	     DS:[R3] = R2             	// [12:70]  
+	     R4 = R4 ^ 8              	// [6:70]  
+	     R2 = 12289               	// [7:70]  
+	     R3 = 0                   	// [9:70]  
+	     DS = R3                  	// [10:70]  
+	     DS:[R2] = R4             	// [11:70]  
 //  71  		break;						
 
 LM14:
 	     .stabn 68,0,71,LM14-_LED_Control
-	     jmp Lt_1_2               	// [14:71]  
-Lt_1_2:	// 0x6a
-Lt_1_6:	// 0x6a
+	     jmp Lt_1_2               	// [13:71]  
+Lt_1_2:	// 0x65
+Lt_1_6:	// 0x65
 // BB:10 cycle count: 5
 //  72  	}
 
@@ -275,7 +275,7 @@ _Led_ON_Some: .proc
 
 LM16:
 	     .stabn 68,0,80,LM16-_Led_ON_Some
-BB1_PU2:	// 0x6c
+BB1_PU2:	// 0x67
 // BB:1 cycle count: 23
 	     push BP to [SP]          	// [0:80]  
 	     BP = SP + 1              	// [2:80]  
@@ -318,7 +318,7 @@ _Led_OFF_Some: .proc
 
 LM18:
 	     .stabn 68,0,97,LM18-_Led_OFF_Some
-BB1_PU3:	// 0x7b
+BB1_PU3:	// 0x76
 // BB:1 cycle count: 26
 	     push BP to [SP]          	// [0:97]  
 	     BP = SP + 1              	// [2:97]  

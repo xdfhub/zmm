@@ -160,6 +160,7 @@ unsigned int Leader_Player_pre=0;
 
 unsigned int Special_temp =0;
 unsigned int L14flag =0;
+
 //unsigned int QnAfter_Event5 =0;
 
 
@@ -255,6 +256,7 @@ unsigned int Answerflag =0;
 
 unsigned int Last2Catcnt =0;
 unsigned int Timeout_cnt_En =0;
+unsigned int randomflag =0;
 
 extern unsigned int  Pass_Key_temp;
 extern unsigned TimeCnt;
@@ -1086,36 +1088,37 @@ unsigned Select_Pingamerandom_4(unsigned Index)
 
 
 /*************************************************************
-*************************************************************/
+*************************************************************
 unsigned int SelectNextPingame(unsigned cnt)
 {
-	unsigned temp = 0;
-	unsigned i = 0;
-	
-	cnt++;
-	if(cnt>=Registerd_Num)
-		 cnt = 0;
-	
-	while(cnt<Registerd_Num)
-	{
-		 if(BitMap[cnt%16]&Pingame[cnt/16]) 
-		 { 		       
-		    //	temp+=1;
-		    	
-		   //if(cnt==temp)	
-		       return cnt;	
-	 	
-		 }
-		 cnt++;
-		 
-	    if(cnt==Registerd_Num)	 
-		    {
-		       cnt =0;	
-		       //temp = 0;	
-		    }
-		 
-	}
-	return temp;
+			
+//	unsigned temp = 0;
+//	unsigned i = 0;
+//	
+//	cnt++;
+//	if(cnt>=Registerd_Num)
+//		 cnt = 0;
+//	
+//	while(cnt<Registerd_Num)
+//	{
+//		 if(BitMap[cnt%16]&Pingame[cnt/16]) 
+//		 { 		       
+//		    //	temp+=1;
+//		    	
+//		   //if(cnt==temp)	
+//		       return cnt;	
+//	 	
+//		 }
+//		 cnt++;
+//		 
+//	    if(cnt==Registerd_Num)	 
+//		    {
+//		       cnt =0;	
+//		       //temp = 0;	
+//		    }
+//		 
+//	}
+//	return temp;
 }
 
 /*************************************************************
@@ -1159,8 +1162,13 @@ unsigned Select_Pingamerandom()
 			     i=0;	
 				 
 			  	if(j)
-			  	{			  	   
-			  	   Index = *P_TimerB_CNTR %j;
+			  	{	
+			  		
+			  	  if(randomflag)			  	   
+			  	    Index = *P_TimerB_CNTR %j;
+			  	  else
+			  	     Index =0;
+			  	   
 			  	   j=0;
 			  	   temp1 =1;
 			  		
@@ -1170,6 +1178,7 @@ unsigned Select_Pingamerandom()
 			      	   All_enable =1;
 			      	  
 			      	  Reset_Pselected();
+			      	  randomflag =1;
 			      	  Pselected[Player_Activing_Cnt/16]|=BitMap[Player_Activing_Cnt%16];	
 			      	
 			      	   
@@ -6063,7 +6072,7 @@ unsigned  Step1()
 		
 	
    
-   
+    randomflag =0;
     Cn =0;
     Registerd_Num =0;
     Player_Activing_Bit =0;//CurrentP
@@ -6692,8 +6701,16 @@ unsigned int Game()
 
         if((Cn>8)&&(Registerd_Num>1)&&(SinceLastE>4)&&((*P_TimerB_CNTR % 4)==0))
         	Events();
-        else      
-            Player_Activing_Cnt =Select_Pingamerandom();//SelectNextPingame(Player_Activing_Cnt);
+        else             
+        {
+           if(Registerd_Num==1)
+           	     Player_Activing_Cnt=Get_Firstcnt_From_Play(Registered_Play_Status);
+//           else	if(CurrentRound ==1)
+//           	     Player_Activing_Cnt =Select_Pingamerandom(0);
+//           	else
+                 Player_Activing_Cnt =Select_Pingamerandom();//SelectNextPingame(Player_Activing_Cnt);
+            
+        }
             
             
 		    Select_Sound();
@@ -6980,7 +6997,7 @@ void Answer_F()
 		                     Player_Point[Player_Activing_Cnt]+=round-1;  
 		                   
 						   Currentsound=0;
-		                   Player_Activing_Cnt =Select_Pingamerandom();//SelectNextPingame(Player_Activing_Cnt);	 
+	                        Player_Activing_Cnt =Select_Pingamerandom();//SelectNextPingame(Player_Activing_Cnt);	 
 		                   
 		                   
 		                   

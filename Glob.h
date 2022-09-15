@@ -7,7 +7,7 @@
 
 
 //En
-#define C_productTouch //生产用Touch接口
+//#define C_productTouch //生产用Touch接口
 #define C_TestPcb 1 //按键公共端接至IOB7
 //#define C_debugtest  1//测试用
 

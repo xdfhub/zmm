@@ -1,0 +1,17 @@
+# Begin Project
+# Begin SubItem "GPCE3100A_Demo  Resources"
+# Begin Group "SPI_Resources_Folder"
+#PROP Default_Filter=
+USEPARAM=FALSE
+PARAM=
+EXPORT=3
+# End Group
+# Begin Source File
+SOURCE=..\..\Rom\Link_Data\Rom_ZMM_V03.bin
+USEPARAM=FALSE
+PARAM=
+ID=RES_ROM_ZMM_V03_BIN
+EXPORT=3
+# End Source File
+# End SubItem
+# End Project
